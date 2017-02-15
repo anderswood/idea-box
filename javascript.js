@@ -50,15 +50,13 @@ function pushToStorage() {
 function printIdea(id,title,body,quality) {
   $('.ideas').prepend(
     `<article class="template">
-      <h2>${title}</h2>
+      <h2 contenteditable="true">${title}</h2>
       <img class="icon" id="delete-btn" src="icons/delete.svg" alt="delete button">
-      <p>${body}</p>
+      <p contenteditable="true">${body}</p>
       <h3 id="unique-id">${id}</h3>
-      <div class="inline-text">
-        <img class="icon upvote" src="icons/upvote.svg" alt="upvote button">
-        <img class="icon downvote" src="icons/downvote.svg" alt="downvote button">
-        <h3><b>quality:</b> <span id="quality">${quality}</span></h3>
-      </div>
+      <img class="icon upvote" src="icons/upvote.svg" alt="upvote button">
+      <img class="icon downvote" src="icons/downvote.svg" alt="downvote button">
+      <h3><b>quality:</b> <span id="quality">${quality}</span></h3>
     </article>`);
 };
 
@@ -66,6 +64,26 @@ function clearInputs() {
   $('form')[0].reset();
   disableSave();
 };
+
+$('.ideas').on('focusout', 'h2, p', function() {
+  var updatedTitle = $('h2').text();
+  var updatedBody = $('p').text();
+  flaggedId = $(this).siblings('#unique-id').text()*1;
+  updateObjectText(flaggedId, updatedTitle, updatedBody);
+  pushToStorage();
+});
+
+function updateObjectText(flaggedId, updatedTitle, updatedBody) {
+  storageArray.forEach(function(idea, i){
+    if (idea.id == flaggedId) {
+      idea.title = updatedTitle;
+      idea.body = updatedBody;
+      storageArray[i] = idea;
+    }
+  })
+}
+
+
 
 //Delete Button: Update storageArray to exclude deleted idea, push updated
 //array to storage, remove deleted idea from DOM
