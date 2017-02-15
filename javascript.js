@@ -1,31 +1,37 @@
 
 var storageArray = JSON.parse(localStorage.getItem('storeMe')) || [];
+var id;
+var title;
+var body;
+var quality;
+var flaggedId;
 
 $(document).ready(function() {
-  storageArray.forEach( function(idea){
-    var id = idea.id;
-    var title = idea.title;
-    var body = idea.body;
-    var quality = idea.quality;
-    printIdea(title,body);
-  })
+  printStorageArray()
 });
 
+function printStorageArray() {
+  storageArray.forEach(function(idea){
+    var localId = idea.id;
+    var localTitle = idea.title;
+    var localBody = idea.body;
+    var localQuality = idea.quality;
+    printIdea(localId,localTitle,localBody,localQuality);
+  })
+}
+
+//Save button
 $('#save').on('click', function() {
-
-  // check inputs - confirm inputs are populated | disable 'save' button
-
-  storeIdea();
+  storeNewIdea();
   pushToStorage();
-  printIdea($('#title').val(),$('#body').val());
+  printIdea(id,title,body,'swill');
   clearInputs();
 });
 
-
-function storeIdea(){
-  var id = Math.floor(Math.random()*1e10)
-  var title = $('#title').val();
-  var body = $('#body').val();
+function storeNewIdea(){
+  id = Math.floor(Math.random()*1e10)
+  title = $('#title').val();
+  body = $('#body').val();
   var newIdea = new Idea(id,title,body);
   storageArray.push(newIdea);
 };
@@ -41,32 +47,101 @@ function pushToStorage() {
   localStorage.setItem("storeMe", JSON.stringify(storageArray));
 };
 
-function printIdea(title,body) {
+function printIdea(id,title,body,quality) {
   $('.ideas').prepend(
     `<article class="template">
     <h2>${title}</h2>
     <img class="icon" id="delete-btn" src="icons/delete.svg" alt="delete button">
     <p>${body}</p>
-    <img class="icon upvote"src="icons/upvote.svg" alt="upvote button">
-    <img src="" alt="downvote button">
-    <h3><b>quality:</b> <span id="quality"></span></h3>
+    <img class="icon upvote" src="icons/upvote.svg" alt="upvote button">
+    <img class="icon downvote" src="icons/downvote.svg" alt="downvote button">
+    <h3 id="unique-id">${id}</h3>
+    <h3><b>quality:</b> <span id="quality">${quality}</span></h3>
     </article>`);
 };
 
 function clearInputs() {
   $('form')[0].reset();
+  disableSave();
 };
 
-function pullFromStorage() {
-  JSON.parse(localStorage.getItem('storeMe'));
-};
-
-
+//Delete Button: Update storageArray to exclude deleted idea, push updated
+//array to storage, remove deleted idea from DOM
 $('.ideas').on('click', '#delete-btn', function() {
- //store ID in local variable
- var id = $('#id')
+  flaggedId = $(this).siblings('#unique-id').text()*1;
+  storageArray = storageArray.filter(function(idea) {
+    return idea.id !== flaggedId;
+  })
+  pushToStorage();
   $(this).parent().remove('article');
-
-//take ID, filter through StorageArray and remove object with matching ID from storage
-// run filter function on storagearray, match ID from deleted Idea with ID of object in array, delete the filtered object
 });
+
+//Upvote and Downvote Buttons
+$('.ideas').on('click', '.upvote', function() {
+  quality = $(this).siblings().children('#quality').text();
+  updateTextUpQuality();
+  flaggedId = $(this).siblings('#unique-id').text()*1;
+  updateObjectQuality();
+  pushToStorage();
+  $(this).parent().siblings().remove();
+  $(this).parent().remove('article');
+  printStorageArray();
+})
+
+$('.ideas').on('click', '.downvote', function() {
+  quality = $(this).siblings().children('#quality').text();
+  updateTextDownQuality();
+  flaggedId = $(this).siblings('#unique-id').text()*1;
+  updateObjectQuality();
+  pushToStorage();
+  $(this).parent().siblings().remove();
+  $(this).parent().remove('article');
+  printStorageArray();
+})
+
+function updateTextUpQuality() {
+  if (quality == 'swill') {
+    quality = 'plausible';
+  } else if (quality == 'plausible') {
+    quality = 'genius';
+  }
+}
+
+function updateTextDownQuality() {
+  if (quality == 'genius') {
+    quality = 'plausible';
+  } else if (quality == 'plausible') {
+    quality = 'swill';
+  }
+}
+
+function updateObjectQuality(){
+  storageArray.forEach(function(idea,i) {
+    if (idea.id == flaggedId) {
+      idea.quality = quality;
+      storageArray[i] = idea;
+    }
+  })
+}
+
+// Disable 'save' button when one or both of the input fields are empty
+$('#title').keyup(function() {
+  checkInputs();
+})
+$('#body').keyup(function() {
+  checkInputs();
+})
+
+function checkInputs(){
+  if ($('#title').val() == '' && $('#body').val() == ''){
+    disableSave();
+  } else if ($('#title').val() == '' || $('#body').val() == '') {
+    disableSave();
+  } else {
+    $('#save').prop('disabled', false);
+  }
+}
+
+function disableSave () {
+  $('#save').prop('disabled', true);
+}
