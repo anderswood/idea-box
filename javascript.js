@@ -7,7 +7,7 @@ $(document).ready(function() {
     var title = idea.title;
     var body = idea.body;
     var quality = idea.quality;
-    printIdea(title,body);
+    printIdea(id,title,body,quality);
   })
 });
 
@@ -15,14 +15,14 @@ $('#save').on('click', function() {
 
   // check inputs - confirm inputs are populated | disable 'save' button
 
-  storeIdea();
+  storeNewIdea();
   pushToStorage();
-  printIdea($('#title').val(),$('#body').val());
+  printIdea(id,$('#title').val(),$('#body').val(),quality);
   clearInputs();
 });
 
 
-function storeIdea(){
+function storeNewIdea(){
   var id = Math.floor(Math.random()*1e10)
   var title = $('#title').val();
   var body = $('#body').val();
@@ -41,20 +41,22 @@ function pushToStorage() {
   localStorage.setItem("storeMe", JSON.stringify(storageArray));
 };
 
-function printIdea(title,body) {
+function printIdea(id,title,body,quality) {
   $('.ideas').prepend(
     `<article class="template">
     <h2>${title}</h2>
     <img class="icon" id="delete-btn" src="icons/delete.svg" alt="delete button">
     <p>${body}</p>
-    <img class="icon upvote"src="icons/upvote.svg" alt="upvote button">
-    <img src="" alt="downvote button">
-    <h3><b>quality:</b> <span id="quality"></span></h3>
+    <img class="icon upvote" src="icons/upvote.svg" alt="upvote button">
+    <img class="icon downvote" src="icons/downvote.svg" alt="downvote button">
+    <h3><b>quality:</b> <span id="quality">${quality}</span></h3>
+    <h3>ID:<span id="unique-id">${id}</span></h3>
     </article>`);
 };
 
 function clearInputs() {
   $('form')[0].reset();
+  disableSave();
 };
 
 function pullFromStorage() {
@@ -70,3 +72,26 @@ $('.ideas').on('click', '#delete-btn', function() {
 //take ID, filter through StorageArray and remove object with matching ID from storage
 // run filter function on storagearray, match ID from deleted Idea with ID of object in array, delete the filtered object
 });
+
+// Disable 'save' button when one or both of the input fields are empty
+$('#title').keyup(function() {
+  checkInputs();
+})
+
+$('#body').keyup(function() {
+  checkInputs();
+})
+
+function checkInputs(){
+  if ($('#title').val() == '' && $('#body').val() == ''){
+    disableSave();
+  } else if ($('#title').val() == '' || $('#body').val() == '') {
+    disableSave();
+  } else {
+    $('#save').prop('disabled', false);
+  }
+}
+
+function disableSave () {
+  $('#save').prop('disabled', true);
+}
