@@ -24,8 +24,14 @@ h1 span {
   color: #6D6E71;
 }
 
-forn {
-  width: 90%;
+form {
+  width: 100%;
+  margin: auto;
+}
+
+input, #save, .search {
+  border: 2px solid #d1d3d4;
+  font-family: "Open sans", sans-serif;
 }
 
 input, #save {
@@ -38,12 +44,21 @@ input {
   height: 30px;
 }
 
+#body {
+  min-height: 120px;
+  text-overflow:
+}
+
 #save {
   width: 91%;
   background-color: #00A790;
   color: #FFF;
   border: none;
   height: 35px;
+}
+
+.search {
+  width: 90%;
 }
 
 article {
@@ -65,28 +80,48 @@ h2 {
   display: inline;
   font-size: 22px;
   left: 0;
-
 }
 
 p {
   color: #939598;
+  padding: 15px 0;
 }
 
 h3 {
   color: #6d6e71;
   font-size: 16px;
+
 }
 
 /*icons*/
 
 .icon {
   width: 20px;
-  margin-left: 70%;
   position: absolute;
 }
 
+.downvote, .upvote {
+  bottom: 0;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.inline-text {
+  bottom: 0;
+  margin-bottom: 20px;
+}
+
 .downvote {
-  margin-left: 75%;
+  margin-left: 25px;
+}
+
+h3 #quality {
+
+}
+
+#unique-id {
+  margin: 0;
+  /*visibility: hidden;*/
 }
 
 #delete-btn {

@@ -50,13 +50,15 @@ function pushToStorage() {
 function printIdea(id,title,body,quality) {
   $('.ideas').prepend(
     `<article class="template">
-    <h2>${title}</h2>
-    <img class="icon" id="delete-btn" src="icons/delete.svg" alt="delete button">
-    <p>${body}</p>
-    <img class="icon upvote" src="icons/upvote.svg" alt="upvote button">
-    <img class="icon downvote" src="icons/downvote.svg" alt="downvote button">
-    <h3 id="unique-id">${id}</h3>
-    <h3><b>quality:</b> <span id="quality">${quality}</span></h3>
+      <h2>${title}</h2>
+      <img class="icon" id="delete-btn" src="icons/delete.svg" alt="delete button">
+      <p>${body}</p>
+      <h3 id="unique-id">${id}</h3>
+      <div class="inline-text">
+        <img class="icon upvote" src="icons/upvote.svg" alt="upvote button">
+        <img class="icon downvote" src="icons/downvote.svg" alt="downvote button">
+        <h3><b>quality:</b> <span id="quality">${quality}</span></h3>
+      </div>
     </article>`);
 };
 
