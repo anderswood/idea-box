@@ -144,11 +144,23 @@ function updateObjectQuality(){
   })
 }
 
-// Disable 'save' button when one or both of the input fields are empty
-$('#title').keyup(function() {
-  checkInputs();
+$('.search').on('keyup', function() {
+  var searchValue = $(this).val().toLowerCase();
+  $('article').each(function() {
+    var retrievedValue = $(this).text().toLowerCase();
+    if (retrievedValue.indexOf(searchValue) != -1) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
+  })
 })
-$('#body').keyup(function() {
+
+// !!text.match(searchValue)
+// .each
+
+// Disable 'save' button when one or both of the input fields are empty
+$('#title, #body').keyup(function() {
   checkInputs();
 })
 
