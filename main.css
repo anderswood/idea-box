@@ -29,24 +29,27 @@ form {
   margin: auto;
 }
 
-input, #save, .search {
+input, textarea, #save, .search {
   border: 2px solid #d1d3d4;
   font-family: "Open sans", sans-serif;
 }
 
-input, #save {
+input, textarea, #save {
   display: block;
   margin: 15px auto;
 }
 
-input {
+input, textarea {
   width: 90%;
   height: 30px;
 }
 
+textarea {
+  resize: none;
+}
+
 #body {
   min-height: 120px;
-  text-overflow:
 }
 
 #save {
