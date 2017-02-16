@@ -6,7 +6,6 @@ body {
   font-family: "Open sans", sans-serif;
 }
 
-
 header {
   background-color: #E5F3F2;
   padding: 10px 0;
@@ -40,12 +39,9 @@ input, textarea, #save {
 }
 
 input {
-  height: 30px;
-}
-
-input{
   width: 85%;
   height: 30px;
+  padding-left: 5px;
 }
 
 textarea {
@@ -61,16 +57,17 @@ textarea {
 }
 
 #body {
-  min-height: 85px;
   width: 85%;
+  min-height: 85px;
+  padding-left: 5px;
 }
 
 #save {
   width: 87%;
+  height: 40px;
   background-color: #00A790;
   color: #FFF;
   border: none;
-  height: 40px;
   margin-bottom: 8px;
   font-size: 1.2em;
 }
@@ -80,11 +77,11 @@ textarea {
 }
 
 article {
+  position: relative;
   width: 86%;
   min-height: 150px;
   margin: 10px auto;
   border-bottom: 2px solid #d1d3d4;
-  position: relative;
   padding-top: 10px;
 }
 
@@ -114,33 +111,54 @@ h3 {
   padding-left: 73px;
 }
 
-.icon {
+.downvote, .upvote, #delete-btn {
   width: 25px;
+  height: 25px;
 }
 
 .downvote, .upvote {
+  position: absolute;
   bottom: 0;
   left: 0;
   margin: 0 0 15px 0;
-  position: absolute;
+}
+
+.upvote {
+  background: url('icons/upvote.svg') no-repeat center;
 }
 
 .downvote {
+  background: url('icons/downvote.svg') no-repeat center;
   margin-left: 35px;
 }
 
-#unique-id {
-  margin: 0;
-  display: none;
+.upvote:hover {
+  background: url('icons/upvote-hover.svg') no-repeat center;
+  background-size: cover;
+}
+
+.downvote:hover {
+  background: url('icons/downvote-hover.svg') no-repeat center;
+  background-size: cover;
 }
 
 #delete-btn {
+  background: url('icons/delete.svg') no-repeat center;
   right: 0;
   top: 0;
   margin-top: 13px;
   position: absolute;
 }
 
+#delete-btn:hover {
+  background: url('icons/delete-hover.svg') no-repeat center;
+  background-size: cover;
+}
+
+#unique-id {
+  margin: 0;
+  display: none;
+}
 
 
 @media screen and (min-width: 700px) {
@@ -159,7 +177,7 @@ h3 {
   }
 
   .search {
-    width: 52%;
+    width: 51%;
   }
 
 }
