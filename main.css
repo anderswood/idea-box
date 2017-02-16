@@ -44,28 +44,42 @@ input, textarea {
   height: 30px;
 }
 
+input{
+  width: 86%;
+  height: 30px;
+}
+
 textarea {
   resize: none;
 }
 
+:placeholder-shown {
+  padding-left: 5px;
+  font-weight: bold;
+  color: #d1d3d4;
+}
+
+
 #body {
   min-height: 120px;
+  width: 85%;
 }
 
 #save {
-  width: 91%;
+  width: 87%;
   background-color: #00A790;
   color: #FFF;
   border: none;
   height: 35px;
+  margin-bottom: 8px;
 }
 
 .search {
-  width: 90%;
+  width: 86%;
 }
 
 article {
-  width: 90%;
+  width: 86%;
   min-height: 200px;
   margin: auto;
   border-bottom: 2px solid #d1d3d4;
@@ -109,10 +123,6 @@ h3 {
   display: inline-block;
 }
 
-.inline-text {
-  bottom: 0;
-  margin-bottom: 20px;
-}
 
 .downvote {
   margin-left: 25px;
@@ -124,11 +134,12 @@ h3 #quality {
 
 #unique-id {
   margin: 0;
-  /*visibility: hidden;*/
+  display: none;
 }
 
 #delete-btn {
- right: 0;
+ /*right: 0;*/
+ float: right;
 }
 
 
@@ -140,8 +151,13 @@ form, .ideas {
     margin: auto;
   }
 
-#save, .search {
-  width: 54%;
+#save {
+  width: 52%;
 }
+
+.search {
+  width: 52%;
+}
+
 
 }
