@@ -45,7 +45,7 @@ input, textarea {
 }
 
 input{
-  width: 86%;
+  width: 85%;
   height: 30px;
 }
 
@@ -75,16 +75,17 @@ textarea {
 }
 
 .search {
-  width: 86%;
+  width: 84%;
 }
 
 article {
   width: 86%;
-  min-height: 200px;
-  margin: auto;
+  min-height: 150px;
+  margin: 20px auto;
   border-bottom: 2px solid #d1d3d4;
   position: relative;
   padding-top: 10px;
+  border: dotted 1px tomato;
 }
 
 
@@ -97,39 +98,38 @@ h2 {
   display: inline;
   font-size: 22px;
   left: 0;
+  max-width: 80%;
 }
 
 p {
   color: #939598;
-  padding: 15px 0;
+  padding: 15px 0 50px 0;
+  min-height: 60px;
+
 }
 
 h3 {
   color: #6d6e71;
   font-size: 16px;
-
+  bottom: 0;
+  padding-left: 55px;
 }
 
-/*icons*/
 
 .icon {
   width: 20px;
-  position: absolute;
 }
 
 .downvote, .upvote {
   bottom: 0;
-  margin-bottom: 20px;
-  display: inline-block;
+  left: 0;
+  margin: 0 0 15px 0;
+  position: absolute;
 }
 
 
 .downvote {
   margin-left: 25px;
-}
-
-h3 #quality {
-
 }
 
 #unique-id {
@@ -138,8 +138,8 @@ h3 #quality {
 }
 
 #delete-btn {
- /*right: 0;*/
- float: right;
+  right: 0;
+  position: absolute;
 }
 
 
