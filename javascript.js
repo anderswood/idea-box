@@ -12,11 +12,11 @@ $(document).ready(function() {
 
 function printStorageArray() {
   storageArray.forEach(function(idea){
-    var localId = idea.id;
-    var localTitle = idea.title;
-    var localBody = idea.body;
-    var localQuality = idea.quality;
-    printIdea(localId,localTitle,localBody,localQuality);
+    var id = idea.id;
+    var title = idea.title;
+    var body = idea.body;
+    var quality = idea.quality;
+    printIdea(id,title,body,quality);
   })
 }
 
@@ -51,11 +51,11 @@ function printIdea(id,title,body,quality) {
   $('.ideas').prepend(
     `<article class="template">
       <h2 contenteditable="true">${title}</h2>
-      <img class="icon" id="delete-btn" src="icons/delete.svg" alt="delete button">
+      <div class="icon" id="delete-btn" alt="delete button"></div>
       <p contenteditable="true">${body}</p>
       <h3 id="unique-id">${id}</h3>
-      <img class="icon upvote" src="icons/upvote.svg" alt="upvote button">
-      <img class="icon downvote" src="icons/downvote.svg" alt="downvote button">
+      <div class="icon upvote" alt="upvote button"></div>
+      <div class="icon downvote" alt="downvote button"></div>
       <h3><b>quality:</b> <span id="quality">${quality}</span></h3>
     </article>`);
 };
@@ -65,6 +65,7 @@ function clearInputs() {
   disableSave();
 };
 
+//Update "title" and "body" text in DOM
 $('.ideas').on('focusout', 'h2, p', function() {
   var updatedTitle = $('h2').text();
   var updatedBody = $('p').text();
@@ -83,9 +84,7 @@ function updateObjectText(flaggedId, updatedTitle, updatedBody) {
   })
 }
 
-
-
-//Delete Button: Update storageArray to exclude deleted idea, push updated
+//Delete Button: Exclude deleted idea from storageArray, push updated
 //array to storage, remove deleted idea from DOM
 $('.ideas').on('click', '#delete-btn', function() {
   flaggedId = $(this).siblings('#unique-id').text()*1;
@@ -155,9 +154,6 @@ $('.search').on('keyup', function() {
     }
   })
 })
-
-// !!text.match(searchValue)
-// .each
 
 // Disable 'save' button when one or both of the input fields are empty
 $('#title, #body').keyup(function() {
