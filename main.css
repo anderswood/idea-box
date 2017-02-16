@@ -17,7 +17,7 @@ h1 {
   text-align: center;
   margin: 10px 0 20px 0;
   color: #00A79D;
-  font-size: 40px;
+  font-size: 35px;
 }
 
 h1 span {
@@ -39,8 +39,7 @@ input, textarea, #save {
   margin: 15px auto;
 }
 
-input, textarea {
-  width: 90%;
+input {
   height: 30px;
 }
 
@@ -51,17 +50,18 @@ input{
 
 textarea {
   resize: none;
+  width: 90%;
 }
 
 :placeholder-shown {
   padding-left: 5px;
+  font-size: 1.2em;
   font-weight: bold;
   color: #d1d3d4;
 }
 
-
 #body {
-  min-height: 120px;
+  min-height: 85px;
   width: 85%;
 }
 
@@ -70,8 +70,9 @@ textarea {
   background-color: #00A790;
   color: #FFF;
   border: none;
-  height: 35px;
+  height: 40px;
   margin-bottom: 8px;
+  font-size: 1.2em;
 }
 
 .search {
@@ -81,11 +82,10 @@ textarea {
 article {
   width: 86%;
   min-height: 150px;
-  margin: 20px auto;
+  margin: 10px auto;
   border-bottom: 2px solid #d1d3d4;
   position: relative;
   padding-top: 10px;
-  border: dotted 1px tomato;
 }
 
 
@@ -94,30 +94,28 @@ h2, p {
 }
 
 h2 {
+  font-family: 'Roboto Slab', serif;
   color: #6d6e71;
-  display: inline;
   font-size: 22px;
-  left: 0;
-  max-width: 80%;
+  max-width: 90%;
 }
 
 p {
   color: #939598;
-  padding: 15px 0 50px 0;
+  padding: 15px 0 5px 0;
   min-height: 60px;
-
+  font-size: 1.1em;
 }
 
 h3 {
   color: #6d6e71;
   font-size: 16px;
   bottom: 0;
-  padding-left: 55px;
+  padding-left: 73px;
 }
 
-
 .icon {
-  width: 20px;
+  width: 25px;
 }
 
 .downvote, .upvote {
@@ -127,9 +125,8 @@ h3 {
   position: absolute;
 }
 
-
 .downvote {
-  margin-left: 25px;
+  margin-left: 35px;
 }
 
 #unique-id {
@@ -139,6 +136,8 @@ h3 {
 
 #delete-btn {
   right: 0;
+  top: 0;
+  margin-top: 13px;
   position: absolute;
 }
 
@@ -146,18 +145,21 @@ h3 {
 
 @media screen and (min-width: 700px) {
 
-form, .ideas {
+  form, .ideas {
     width: 60%;
     margin: auto;
   }
 
-#save {
-  width: 52%;
-}
+  #body {
+    min-height: 15px;
+  }
 
-.search {
-  width: 52%;
-}
+  #save {
+    width: 52%;
+  }
 
+  .search {
+    width: 52%;
+  }
 
 }
