@@ -44,6 +44,16 @@ input {
   padding-left: 5px;
 }
 
+input:focus, textarea:focus, .search:focus {
+  outline-color: #045e55;
+  outline-width: .2em;
+}
+
+#save:focus {
+  outline-color: #00a79d;
+  outline-width: .2em;
+}
+
 textarea {
   resize: none;
   width: 90%;
@@ -72,6 +82,16 @@ textarea {
   font-size: 1.2em;
 }
 
+#save:hover {
+  background-color: #045e55;
+  cursor: pointer;
+}
+
+#save:disabled {
+  background-color: #97c6bf;
+  cursor: default;
+}
+
 .search {
   width: 84%;
 }
@@ -84,7 +104,6 @@ article {
   border-bottom: 2px solid #d1d3d4;
   padding-top: 10px;
 }
-
 
 h2, p {
   margin: 0;
@@ -102,6 +121,13 @@ p {
   padding: 15px 0 5px 0;
   min-height: 60px;
   font-size: 1.1em;
+  margin-top: 6px;
+}
+
+h2:focus, p:focus {
+  outline-color: #045e55;
+  outline-width: .2em;
+  padding: 2px;
 }
 
 h3 {
@@ -124,35 +150,32 @@ h3 {
 }
 
 .upvote {
-  background: url('icons/upvote.svg') no-repeat center;
+  background: url('icons/upvote.svg');
 }
 
 .downvote {
-  background: url('icons/downvote.svg') no-repeat center;
+  background: url('icons/downvote.svg');
   margin-left: 35px;
 }
 
 .upvote:hover {
-  background: url('icons/upvote-hover.svg') no-repeat center;
-  background-size: cover;
+  background: url('icons/upvote-hover.svg');
 }
 
 .downvote:hover {
-  background: url('icons/downvote-hover.svg') no-repeat center;
-  background-size: cover;
+  background: url('icons/downvote-hover.svg');
 }
 
 #delete-btn {
-  background: url('icons/delete.svg') no-repeat center;
+  position: absolute;
+  background: url('icons/delete.svg');
   right: 0;
   top: 0;
   margin-top: 13px;
-  position: absolute;
 }
 
 #delete-btn:hover {
-  background: url('icons/delete-hover.svg') no-repeat center;
-  background-size: cover;
+  background: url('icons/delete-hover.svg');
 }
 
 #unique-id {
